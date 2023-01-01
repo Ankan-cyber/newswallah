@@ -398,7 +398,9 @@ export default class News extends Component {
                     <h2>News Wallah - Top Headlines</h2>
                     <div className="row my-3">
                         <div className='col-md-4'>
-                                <NewsCard title="title" abstract="abstract" newsUrl="url" imgUrl=""/>
+                            {this.articles.map(()=>{
+                                return <NewsCard title={this.articles.title} abstract={this.articles.abstract} newsUrl={this.articles.short_url} imgUrl=""/>
+                            })}
                             </div>
                     </div>
                 </div>
