@@ -36,6 +36,14 @@ export default class Navbar extends Component {
                   <ul className="dropdown-menu dropdown-menu-dark">
                     <li><a className="dropdown-item" href="/">Tech</a></li>
                     <li><a className="dropdown-item" href="/">Politics</a></li>
+                    <li><a className="dropdown-item" href="/"></a></li>
+                    <li><a className="dropdown-item" href="/">Politics</a></li>
+                    <li><a className="dropdown-item" href="/">Politics</a></li>
+                    <li><a className="dropdown-item" href="/">Politics</a></li>
+                    <li><a className="dropdown-item" href="/">Politics</a></li>
+                    <li><a className="dropdown-item" href="/">Politics</a></li>
+                    <li><a className="dropdown-item" href="/">Politics</a></li>
+                    <li><a className="dropdown-item" href="/">Politics</a></li>
                     <li>
                       <hr className="dropdown-divider"/>
                     </li>
