@@ -398,10 +398,14 @@ export default class News extends Component {
                     <h2>News Wallah - Top Headlines</h2>
                     <div className="row my-3">
                         {this.articles.map((e) => {
+                            let imgUrl
+                            for(let i=0; i<e.multimedia.length;i++){
+                                if(i===1){
+                                    imgUrl = e.multimedia[i].url;
+                                }
+                            }
                             return <div className='col-md-4' key={e.uri}>
-                                <NewsCard title={e.title} abstract={e.abstract} newsUrl={e.short_url} imgUrl={e.multimedia.map((e)=>{
-                                    return e.url.split(',').map((e)=>{return e})
-                                })}/></div>
+                                <NewsCard title={e.title} abstract={e.abstract} newsUrl={e.short_url} imgUrl={imgUrl}/></div>
                         })}
                     </div>
                 </div>
