@@ -390,18 +390,19 @@ export default class News extends Component {
             page: 1
         }
     }
-    
+
     render() {
         return (
             <>
                 <div className="container my-3" style={{ padding: "4rem" }}>
                     <h2>News Wallah - Top Headlines</h2>
                     <div className="row my-3">
-                        <div className='col-md-4'>
-                            {this.articles.map(()=>{
-                                return <NewsCard title={this.articles.title} abstract={this.articles.abstract} newsUrl={this.articles.short_url} imgUrl=""/>
-                            })}
-                            </div>
+                        {this.articles.map((e) => {
+                            return <div className='col-md-4' key={e.uri}>
+                                <NewsCard title={e.title} abstract={e.abstract} newsUrl={e.short_url} imgUrl={e.multimedia.map((e)=>{
+                                    return e.url.split(',').map((e)=>{return e})
+                                })}/></div>
+                        })}
                     </div>
                 </div>
             </>
