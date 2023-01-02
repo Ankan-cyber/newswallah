@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import NewsCard from './NewsCard'
 
-export default class News extends Component {
+export default class TopStories extends Component {
     constructor() {
         super()
         this.state = {
@@ -15,7 +15,6 @@ export default class News extends Component {
         let data = await fetch(url);
         let parsedData = await data.json()
         this.setState({ articles: parsedData.results })
-        console.log(parsedData.results)
     }
     render() {
         return (
@@ -31,7 +30,7 @@ export default class News extends Component {
                                         imgUrl = e.multimedia[i].url;
                                     }
                                 }
-                                return <div className='col-md-4' style={{padding:'10px'}} key={e.uri}>
+                                return <div className='col-md-4' style={{ padding: '10px' }} key={e.uri}>
                                     <NewsCard title={e.title} abstract={e.abstract} newsUrl={e.short_url} imgUrl={imgUrl} /></div>
                             })}
                         </div>
