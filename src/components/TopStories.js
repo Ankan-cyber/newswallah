@@ -6,8 +6,7 @@ export default class TopStories extends Component {
         super()
         this.state = {
             articles: [],
-            loading: false,
-            page: 1
+            loading: false
         }
     }
     async componentDidMount() {
@@ -19,8 +18,9 @@ export default class TopStories extends Component {
     render() {
         return (
             <>
-                {document.title="News Wallah - Top Headlines"}
+                {document.title = "News Wallah - Top Headlines"}
                 {this.state.articles.length === 0 ? '' :
+
                     <div className="container my-3" style={{ padding: "4rem" }}>
                         <h2>News Wallah - Top Headlines</h2>
                         <div className="row my-3">
@@ -35,8 +35,7 @@ export default class TopStories extends Component {
                                     <NewsCard title={e.title} abstract={e.abstract} newsUrl={e.short_url} imgUrl={imgUrl} /></div>
                             })}
                         </div>
-                    </div>
-                }
+                    </div>}
             </>
         )
     }
