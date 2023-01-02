@@ -27,7 +27,7 @@ export default class Navbar extends Component {
                     <a className="nav-link active" aria-current="page" href="/">Home</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/">About</a>
+                    <a className="nav-link" href="/about">About Us</a>
                   </li>
                   <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,14 +35,6 @@ export default class Navbar extends Component {
                     </a>
                     <ul className="dropdown-menu dropdown-menu-dark">
                       <li><a className="dropdown-item" href="/">Tech</a></li>
-                      <li><a className="dropdown-item" href="/">Politics</a></li>
-                      <li><a className="dropdown-item" href="/"></a></li>
-                      <li><a className="dropdown-item" href="/">Politics</a></li>
-                      <li><a className="dropdown-item" href="/">Politics</a></li>
-                      <li><a className="dropdown-item" href="/">Politics</a></li>
-                      <li><a className="dropdown-item" href="/">Politics</a></li>
-                      <li><a className="dropdown-item" href="/">Politics</a></li>
-                      <li><a className="dropdown-item" href="/">Politics</a></li>
                       <li><a className="dropdown-item" href="/">Politics</a></li>
                       <li>
                         <hr className="dropdown-divider" />

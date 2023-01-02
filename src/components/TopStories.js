@@ -19,6 +19,7 @@ export default class TopStories extends Component {
     render() {
         return (
             <>
+                {document.title="News Wallah - Top Headlines"}
                 {this.state.articles.length === 0 ? '' :
                     <div className="container my-3" style={{ padding: "4rem" }}>
                         <h2>News Wallah - Top Headlines</h2>
