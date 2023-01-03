@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import NewsCard from './NewsCard'
 
 export default class TopStories extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             articles: [],
             page: 1,
             loading: false
         }
+
     }
     renderNews(start, end) {
         return this.state.articles.slice(start, end).map((e) => {
@@ -45,27 +46,26 @@ export default class TopStories extends Component {
                             {
                                 (() => {
                                     if (this.state.page === 1) {
-                                        console.log(this.state.articles.length)
+
                                         return this.renderNews(0, 9)
+                                    }
+                                    else if (this.state.page === 2) {
+                                        return this.renderNews(9, 18)
+                                    }
+                                    else if (this.state.page === 3) {
+                                        return this.renderNews(18, 27)
+                                    }
+                                    else {
+                                        return this.renderNews(27, 36)
                                     }
                                 })()
                             }
                         </div>
-
+                        <div className="container d-flex justify-content-between">
+                            <button type="button" className="btn btn-outline-danger"> &larr; Previous</button>
+                            <button type="button" className="btn btn-outline-danger" >Next &rarr;</button>
+                        </div>
                     </div>}
-                <nav aria-label="Page navigation example" style={{padding:"1.5rem"}}>
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#">Previous</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#" onClick={this.setState({page:1})}>1</a></li>
-                        <li class="page-item"><a class="page-link" href="#" onClick={this.setState({page:2})}>2</a></li>
-                        <li class="page-item"><a class="page-link" href="#" onClick={this.setState({page:3})}>3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
             </>
         )
     }
