@@ -4,7 +4,7 @@ export default class Navbar extends Component {
   render() {
     return (
       <>
-        <nav className="navbar navbar-dark bg-dark fixed-top">
+        <nav className="navbar navbar-dark bg-dark fixed-top" style={{margin:'0',padding:'0'}}>
           <div className="container-fluid">
             <a className="navbar-brand" href="/">News Wallah</a>
             {/* <svg stroke="black"
