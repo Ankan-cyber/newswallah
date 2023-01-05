@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 
 export default class Navbar extends Component {
+  constructor(){
+    super()
+    this.state = {
+      categories : ["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Insider", "Magazine", "Movies", "Nyregion", "Obituaries", "Opinion", "Politics", "Real-Estate", "Science", "Sports", "Sundayreview", "Technology", "Theater", "T-magazine", "Travel", "Upshot", "Us", "World"]
+    }
+  }
   render() {
     return (
       <>
@@ -34,12 +40,7 @@ export default class Navbar extends Component {
                       Categories
                     </a>
                     <ul className="dropdown-menu dropdown-menu-dark">
-                      <li><a className="dropdown-item" href="/">Tech</a></li>
-                      <li><a className="dropdown-item" href="/">Politics</a></li>
-                      <li>
-                        <hr className="dropdown-divider" />
-                      </li>
-                      <li><a className="dropdown-item" href="/">Something else here</a></li>
+                      <li><a className="dropdown-item" href="/">Arts</a></li>
                     </ul>
                   </li>
                 </ul>

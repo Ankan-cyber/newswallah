@@ -12,7 +12,7 @@ export class App extends Component {
         <Router>
           <Navbar />
           <Routes>
-            <Route exact path='/' element={<TopStories />}></Route>
+            <Route exact path='/' element={<TopStories section="home"/>}></Route>
             <Route exact path='/about' element={<About />}></Route>
             <Route exact path='*' element={<NotFound/>}></Route>
           </Routes>
