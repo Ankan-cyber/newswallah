@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
 export default class Navbar extends Component {
-  constructor(){
+  constructor() {
     super()
     this.state = {
-      categories : ["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Insider", "Magazine", "Movies", "Nyregion", "Obituaries", "Opinion", "Politics", "Real-Estate", "Science", "Sports", "Sundayreview", "Technology", "Theater", "T-magazine", "Travel", "Upshot", "Us", "World"]
+      categories: ["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Insider", "Magazine", "Movies", "Nyregion", "Obituaries", "Opinion", "Politics", "RealEstate", "Science", "Sports", "Sundayreview", "Technology", "Theater", "T-magazine", "Travel", "Upshot", "Us", "World"]
     }
   }
   render() {
@@ -40,7 +40,14 @@ export default class Navbar extends Component {
                       Categories
                     </a>
                     <ul className="dropdown-menu dropdown-menu-dark">
-                      <li><a className="dropdown-item" href="/">Arts</a></li>
+                      {
+                        this.state.categories.map((e) => {
+                          if (e === "RealEstate") {
+                            return <li><a className="dropdown-item" href={`/categories/${e.toLowerCase()}`}>Real Estate</a></li>
+                          }
+                          return <li><a className="dropdown-item" href={`/categories/${e.toLowerCase()}`}>{e}</a></li>
+                        })
+                      }
                     </ul>
                   </li>
                 </ul>

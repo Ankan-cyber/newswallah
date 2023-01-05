@@ -40,7 +40,7 @@ export default class TopStories extends Component {
     }
     renderNews(start, end) {
         return this.state.articles.slice(start, end).map((e) => {
-            if(e.title==="" && e.abstract==="" && e.multimedia == null){
+            if(e.title==="" || e.abstract===""){
                 return "";
             }
             else{
