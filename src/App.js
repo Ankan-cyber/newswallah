@@ -4,6 +4,7 @@ import About from './components/About'
 import Navbar from './components/Navbar'
 import TopStories from './components/TopStories'
 import NotFound from './components/NotFound'
+import Search from './components/Search'
 
 export class App extends Component {
   constructor(){
@@ -23,9 +24,10 @@ export class App extends Component {
             <Route exact path='*' element={<NotFound/>}></Route>
             {
               this.state.categories.map((e)=>{
-                return <Route exact path={`/categories/${e.toLowerCase()}`} element={<TopStories section={e.toLowerCase()}/>}></Route>
+                return <Route key={e} exact path={`/categories/${e.toLowerCase()}`} element={<TopStories section={e.toLowerCase()}/>}></Route>
               })
             }
+            <Route exact path='/search' element={<Search/>}></Route>
           </Routes>
         </Router>
       </>

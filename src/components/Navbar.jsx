@@ -43,15 +43,15 @@ export default class Navbar extends Component {
                       {
                         this.state.categories.map((e) => {
                           if (e === "RealEstate") {
-                            return <li><a className="dropdown-item" href={`/categories/${e.toLowerCase()}`}>Real Estate</a></li>
+                            return <li key={e}><a className="dropdown-item" href={`/categories/${e.toLowerCase()}`}>Real Estate</a></li>
                           }
-                          return <li><a className="dropdown-item" href={`/categories/${e.toLowerCase()}`}>{e}</a></li>
+                          return <li key={e}><a className="dropdown-item" href={`/categories/${e.toLowerCase()}`}>{e}</a></li>
                         })
                       }
                     </ul>
                   </li>
                 </ul>
-                <form className="d-flex mt-3" role="search">
+                <form className="d-flex mt-3" role="search" action="/search" method="get">
                   <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                   <button className="btn btn-success" type="submit">Search</button>
                 </form>

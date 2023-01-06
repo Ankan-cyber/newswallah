@@ -11,6 +11,7 @@ export default class TopStories extends Component {
             articleStart: 0,
             articleEnd: 9,
             section : "Home",
+            validArticles : 0,
             loading: false
         }
 
@@ -40,7 +41,7 @@ export default class TopStories extends Component {
     }
     renderNews(start, end) {
         return this.state.articles.slice(start, end).map((e) => {
-            if(e.title==="" || e.abstract===""){
+            if(e.title==="" || e.abstract==="" || e.section ==="admin"){
                 return "";
             }
             else{
@@ -65,7 +66,7 @@ export default class TopStories extends Component {
         let parsedData = await data.json()
         // console.log(parsedData)
         this.setState({ articles: parsedData.results, maxPage: Math.ceil(this.state.articles.length / 9), section: parsedData.section })
-        console.log(this.state.articles)
+        // console.log(this.state.articles)
 
     }
 
@@ -76,15 +77,15 @@ export default class TopStories extends Component {
                 {this.state.articles.length === 0 ? '' :
 
                     <div className="container my-3" style={{ padding: "4rem" }}>
-                        <h2>News Wallah - {this.props.section==="home"?'':this.state.section} Headlines</h2>
+                        <h2 id="heading" className="text-center">News Wallah - {this.props.section==="home"?'':this.state.section} Headlines</h2>
                         <div className="row my-3">
                             {
                                 this.renderNews(this.state.articleStart, this.state.articleEnd)
                             }
                         </div>
                         <div className="container d-flex justify-content-between">
-                            <button type="button" className="btn btn-outline-danger" onClick={this.handlePrevClick} disabled={this.state.page <= 1}> &larr; Previous</button>
-                            <button type="button" className="btn btn-outline-danger" disabled={this.state.page===this.state.maxPage} onClick={this.handleNextClick}>Next &rarr;</button>
+                            <button type="button" className="btn btn-outline-danger" onClick={this.handlePrevClick} disabled={this.state.page <= 1} onTouchEnd={this.handlePrevClick}> &larr; Previous</button>
+                            <button type="button" className="btn btn-outline-danger" disabled={this.state.page===this.state.maxPage || this.state.articles.length <= 9} onClick={this.handleNextClick} onTouchEnd={this.handleNextClick}>Next &rarr;</button>
                         </div>
                     </div>}
             </>
