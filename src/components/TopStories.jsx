@@ -79,8 +79,8 @@ export default class TopStories extends Component {
     render() {
         return (
             <>
+                {document.title = `News Wallah - ${this.props.section === "home" ? '' : this.state.section} Headlines`}
                 {this.state.articles.length === 0 ? <Spinner /> :
-
                     <div className="container my-3" style={{ padding: "4rem" }}>
                         <h2 id="heading" className="text-center">News Wallah - {this.props.section === "home" ? '' : this.state.section} Headlines</h2>
                         <div className="row my-3">
