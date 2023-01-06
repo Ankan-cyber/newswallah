@@ -53,13 +53,22 @@ export default class TopStories extends Component {
                     }
                 }
             }
+            let formattedDate = new Date(e.published_date).toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                timeZone: 'America/New_York'
+              });
             return (
                 <div className='col-md-4' style={{ padding: '10px' }} key={e.uri}>
-                    <NewsCard title={e.title} abstract={e.abstract} newsUrl={e.short_url} imgUrl={imgUrl} />
+                    <NewsCard title={e.title} abstract={e.abstract} newsUrl={e.short_url} imgUrl={imgUrl} author={e.byline} date={formattedDate}/>
                 </div>
             );}
         });
     }
+
     async componentDidMount() {
         let url = `https://api.nytimes.com/svc/topstories/v2/${this.props.section}.json?api-key=G0hi9JktPaMmV6i0GVcnNZXjoA4RXkQ9`;
         let data = await fetch(url);
@@ -85,7 +94,7 @@ export default class TopStories extends Component {
                         </div>
                         <div className="container d-flex justify-content-between">
                             <button type="button" className="btn btn-outline-danger" onClick={this.handlePrevClick} disabled={this.state.page <= 1} onTouchEnd={this.handlePrevClick}> &larr; Previous</button>
-                            <button type="button" className="btn btn-outline-danger" disabled={this.state.page===this.state.maxPage || this.state.articles.length <= 9} onClick={this.handleNextClick} onTouchEnd={this.handleNextClick}>Next &rarr;</button>
+                            <button type="button" className="btn btn-outline-danger" disabled={this.state.page===this.state.maxPage || this.state.articles.length <= 9} onClick={this.handleNextClick} >Next &rarr;</button>
                         </div>
                     </div>}
             </>
