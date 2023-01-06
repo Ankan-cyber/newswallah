@@ -8,20 +8,14 @@ export default class TopStories extends Component {
         this.state = {
             articles: [],
             page: 1,
-            maxPage: 1,
             articleStart: 0,
             articleEnd: 9,
             section: "Home",
-            validArticles: 100,
-            count: 0
-        }
-        if ('caches' in window) {
-            caches.delete('cache-name');
+            validArticles: 100
         }
     }
     handleNextClick = () => {
-        this.setState(prevState => ({ count: prevState.count + 1 }));
-        if (this.state.page < this.state.maxPage) {
+        if (this.state.page < Math.ceil(this.state.articles.length / 9)) {
             window.scrollTo(0, 0)
             this.setState({
                 page: this.state.page + 1,
@@ -32,7 +26,7 @@ export default class TopStories extends Component {
         }
     }
     handlePrevClick = () => {
-        if (this.state.page <= this.state.maxPage) {
+        if (this.state.page <= Math.ceil(this.state.articles.length / 9)) {
             window.scrollTo(0, 0)
             this.setState({
                 page: this.state.page - 1,
@@ -78,13 +72,8 @@ export default class TopStories extends Component {
         let url = `https://api.nytimes.com/svc/topstories/v2/${this.props.section}.json?api-key=G0hi9JktPaMmV6i0GVcnNZXjoA4RXkQ9`;
         let data = await fetch(url);
         let parsedData = await data.json()
-        // console.log(parsedData)
-        this.setState({ articles: parsedData.results, maxPage: Math.ceil(this.state.articles.length / 9), section: parsedData.section, count: 0 })
+        this.setState({ articles: parsedData.results, section: parsedData.section })
         document.title = `News Wallah - ${this.props.section === "home" ? '' : this.state.section} Headlines`
-        // console.log(this.state.articles)
-    }
-    componentWillUnmount() {
-        this.setState({ count: null });
     }
 
     render() {
@@ -100,8 +89,8 @@ export default class TopStories extends Component {
                             }
                         </div>
                         <div className="container d-flex justify-content-between">
-                            <button type="button" className="btn btn-outline-danger" onClick={this.handlePrevClick} disabled={this.state.page <= 1} onTouchEnd={this.handlePrevClick}> &larr; Previous</button>
-                            <button type="button" className="btn btn-outline-danger" disabled={this.state.page === this.state.maxPage || this.state.validArticles <= 9} onClick={this.handleNextClick} onTouchEnd={this.handleNextClick}>Next &rarr;</button>
+                            <button type="button" className="btn btn-outline-danger" onClick={this.handlePrevClick} disabled={this.state.page <= 1}> &larr; Previous</button>
+                            <button type="button" className="btn btn-outline-danger" disabled={this.state.page === (Math.ceil(this.state.articles.length / 9)) || this.state.validArticles <= 9} onClick={this.handleNextClick}>Next &rarr;</button>
                         </div>
                     </div>}
             </>
