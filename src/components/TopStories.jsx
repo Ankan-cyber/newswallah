@@ -15,7 +15,9 @@ export default class TopStories extends Component {
             validArticles: 100,
             count: 0
         }
-
+        if ('caches' in window) {
+            caches.delete('cache-name');
+        }
     }
     handleNextClick = () => {
         this.setState(prevState => ({ count: prevState.count + 1 }));
@@ -78,7 +80,7 @@ export default class TopStories extends Component {
         let parsedData = await data.json()
         // console.log(parsedData)
         this.setState({ articles: parsedData.results, maxPage: Math.ceil(this.state.articles.length / 9), section: parsedData.section, count: 0 })
-        { document.title = `News Wallah - ${this.props.section === "home" ? '' : this.state.section} Headlines` }
+        document.title = `News Wallah - ${this.props.section === "home" ? '' : this.state.section} Headlines`
         // console.log(this.state.articles)
     }
     componentWillUnmount() {
@@ -88,7 +90,7 @@ export default class TopStories extends Component {
     render() {
         return (
             <>
-                {this.state.articles.length === 0 ? <Spinner/> :
+                {this.state.articles.length === 0 ? <Spinner /> :
 
                     <div className="container my-3" style={{ padding: "4rem" }}>
                         <h2 id="heading" className="text-center">News Wallah - {this.props.section === "home" ? '' : this.state.section} Headlines</h2>
