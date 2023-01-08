@@ -28,7 +28,7 @@ export class App extends Component {
                 return <Route key={e} exact path={`/categories/${e.toLowerCase()}`} element={<TopStories apiKey={this.apiKey} section={e.toLowerCase()} />}></Route>
               })
             }
-            <Route exact path='/search' element={<Search />}></Route>
+            <Route exact path='/search' element={<Search apiKey={this.apiKey}/>}></Route>
           </Routes>
         </Router>
       </>
