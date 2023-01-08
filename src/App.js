@@ -7,6 +7,7 @@ import NotFound from './components/NotFound'
 import Search from './components/Search'
 
 export class App extends Component {
+  apiKey = "G0hi9JktPaMmV6i0GVcnNZXjoA4RXkQ9";
   constructor() {
     super()
     this.state = {
@@ -19,12 +20,12 @@ export class App extends Component {
         <Router>
           <Navbar />
           <Routes>
-            <Route exact path='/' element={<TopStories section="home" />}></Route>
+            <Route exact path='/' element={<TopStories apiKey={this.apiKey} section="home" />}></Route>
             <Route exact path='/about' element={<About />}></Route>
             <Route exact path='*' element={<NotFound />}></Route>
             {
               this.state.categories.map((e) => {
-                return <Route key={e} exact path={`/categories/${e.toLowerCase()}`} element={<TopStories section={e.toLowerCase()} />}></Route>
+                return <Route key={e} exact path={`/categories/${e.toLowerCase()}`} element={<TopStories apiKey={this.apiKey} section={e.toLowerCase()} />}></Route>
               })
             }
             <Route exact path='/search' element={<Search />}></Route>

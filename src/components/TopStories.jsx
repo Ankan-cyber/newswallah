@@ -68,7 +68,7 @@ export default class TopStories extends Component {
     }
 
     async componentDidMount() {
-        let url = `https://api.nytimes.com/svc/topstories/v2/${this.props.section}.json?api-key=G0hi9JktPaMmV6i0GVcnNZXjoA4RXkQ9`;
+        let url = `https://api.nytimes.com/svc/topstories/v2/${this.props.section}.json?api-key=${this.props.apiKey}`;
         let data = await fetch(url);
         let parsedData = await data.json()
         this.setState({ articles: parsedData.results, section: parsedData.section })
