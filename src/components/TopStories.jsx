@@ -10,8 +10,7 @@ export default class TopStories extends Component {
             page: 1,
             articleStart: 0,
             articleEnd: 9,
-            section: "Home",
-            validArticles: 100
+            section: "Home"
         }
     }
     handleNextClick = () => {
@@ -90,7 +89,7 @@ export default class TopStories extends Component {
                         </div>
                         <div className="container d-flex justify-content-between">
                             <button type="button" className="btn btn-outline-danger" onClick={this.handlePrevClick} disabled={this.state.page <= 1}> &larr; Previous</button>
-                            <button type="button" className="btn btn-outline-danger" disabled={this.state.page === (Math.ceil(this.state.articles.length / 9)) || this.state.validArticles <= 9} onClick={this.handleNextClick}>Next &rarr;</button>
+                            <button type="button" className="btn btn-outline-danger" disabled={this.state.page === (Math.ceil(this.state.articles.length / 9))} onClick={this.handleNextClick}>Next &rarr;</button>
                         </div>
                     </div>}
             </>

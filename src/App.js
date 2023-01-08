@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import About from './components/About'
 import Navbar from './components/Navbar'
 import TopStories from './components/TopStories'
@@ -7,10 +7,10 @@ import NotFound from './components/NotFound'
 import Search from './components/Search'
 
 export class App extends Component {
-  constructor(){
+  constructor() {
     super()
     this.state = {
-      categories : ["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Insider", "Magazine", "Movies", "Nyregion", "Obituaries", "Opinion", "Politics", "RealEstate", "Science", "Sports", "Sundayreview", "Technology", "Theater", "T-magazine", "Travel", "Upshot", "Us", "World"]
+      categories: ["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Insider", "Magazine", "Movies", "Nyregion", "Obituaries", "Opinion", "Politics", "RealEstate", "Science", "Sports", "Sundayreview", "Technology", "Theater", "T-magazine", "Travel", "Upshot", "Us", "World"]
     }
   }
   render() {
@@ -19,15 +19,15 @@ export class App extends Component {
         <Router>
           <Navbar />
           <Routes>
-            <Route exact path='/' element={<TopStories section="home"/>}></Route>
+            <Route exact path='/' element={<TopStories section="home" />}></Route>
             <Route exact path='/about' element={<About />}></Route>
-            <Route exact path='*' element={<NotFound/>}></Route>
+            <Route exact path='*' element={<NotFound />}></Route>
             {
-              this.state.categories.map((e)=>{
-                return <Route key={e} exact path={`/categories/${e.toLowerCase()}`} element={<TopStories section={e.toLowerCase()}/>}></Route>
+              this.state.categories.map((e) => {
+                return <Route key={e} exact path={`/categories/${e.toLowerCase()}`} element={<TopStories section={e.toLowerCase()} />}></Route>
               })
             }
-            <Route exact path='/search' element={<Search/>}></Route>
+            <Route exact path='/search' element={<Search />}></Route>
           </Routes>
         </Router>
       </>
