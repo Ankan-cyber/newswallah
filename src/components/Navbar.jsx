@@ -1,4 +1,4 @@
-import React, { Component, useRef } from 'react'
+import React, { Component } from 'react'
 
 export default class Navbar extends Component {
   constructor() {
