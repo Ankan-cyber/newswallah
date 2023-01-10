@@ -11,6 +11,7 @@ export default class Navbar extends Component {
   handleSubmit = (event) =>{
     event.preventDefault();
     let inputValue = this.inputElement.current.value;
+    console.log(inputValue)
     // send inputValue to /search with query parameter ?q=inputValue
   }
   render() {
