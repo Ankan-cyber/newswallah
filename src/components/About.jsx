@@ -12,7 +12,7 @@ export default class About extends Component {
                 <div className="container" style={{ padding: "5rem" }}>
                     <div className="row">
                         <div className="col-4 text-center">
-                            <img src="/logo192.png" className="rounded" alt="logo" />
+                            <img src="/logo512.png" className="rounded" alt="logo" style={{width: '50%'}}/>
                         </div>
                         <div className="col-8">
                             <h1 style={{ paddingBottom: "1rem" }}>About Us</h1>

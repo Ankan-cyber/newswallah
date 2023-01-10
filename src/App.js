@@ -4,7 +4,6 @@ import About from './components/About'
 import Navbar from './components/Navbar'
 import TopStories from './components/TopStories'
 import NotFound from './components/NotFound'
-import Search from './components/Search'
 
 export class App extends Component {
   apiKey = "G0hi9JktPaMmV6i0GVcnNZXjoA4RXkQ9";
@@ -28,7 +27,6 @@ export class App extends Component {
                 return <Route key={e} exact path={`/categories/${e.toLowerCase()}`} element={<TopStories apiKey={this.apiKey} section={e.toLowerCase()} />}></Route>
               })
             }
-            <Route exact path='/search' element={<Search apiKey={this.apiKey}/>}></Route>
           </Routes>
         </Router>
       </>
