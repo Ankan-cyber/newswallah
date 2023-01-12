@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Image from '../Images/default.png'
-
-export default class Newsbody extends Component {
-    render() {
-        let { title, abstract, imgUrl, newsUrl, author, date } = this.props;
+function NewsCard(props){
+        let { title, abstract, imgUrl, newsUrl, author, date } = props;
         return (
             <>
                 <div className="card">
@@ -18,5 +16,5 @@ export default class Newsbody extends Component {
                 </div>
             </>
         )
-    }
 }
+export default NewsCard

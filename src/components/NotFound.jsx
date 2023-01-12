@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import '../css/NotFound.css'
 
-export default class NotFound extends Component {
-    render() {
+function NotFound(){
         return (
             <>
                 {document.title = "404 Not Found"}
@@ -21,5 +20,5 @@ export default class NotFound extends Component {
                 </section>
             </>
         )
-    }
 }
+export default NotFound

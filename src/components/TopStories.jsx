@@ -1,43 +1,36 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import NewsCard from './NewsCard'
 import Spinner from './Spinner'
 
-export default class TopStories extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            articles: [],
-            page: 1,
-            articleStart: 0,
-            articleEnd: 9,
-            section: "Home"
+function TopStories(props) {
+    const [articles, setArticles] = useState([])
+    const [page, setPage] = useState(1)
+    const [articleStart, setArticleStart] = useState(0)
+    const [articleEnd, setArticleEnd] = useState(9)
+    const [section, setSection] = useState("Home")
+
+    const handleNextClick = () => {
+        if (page < Math.ceil(articles.length / 9)) {
+            window.scrollTo(0, 0)
+            setPage(page + 1)
+            setArticleStart(articleEnd)
+            setArticleEnd(articleEnd + 9)
+            renderNews(articleStart, articleEnd)
         }
     }
-    handleNextClick = () => {
-        if (this.state.page < Math.ceil(this.state.articles.length / 9)) {
+    const handlePrevClick = () => {
+        if (page <= Math.ceil(articles.length / 9)) {
             window.scrollTo(0, 0)
-            this.setState({
-                page: this.state.page + 1,
-                articleStart: this.state.articleEnd,
-                articleEnd: (this.state.articleEnd + 9)
-            })
-            this.renderNews(this.state.articleStart, this.state.articleEnd)
-        }
-    }
-    handlePrevClick = () => {
-        if (this.state.page <= Math.ceil(this.state.articles.length / 9)) {
-            window.scrollTo(0, 0)
-            this.setState({
-                page: this.state.page - 1,
-                articleStart: (this.state.articleStart - 9),
-                articleEnd: (this.state.articleEnd - 9)
-            })
-            this.renderNews(this.state.articleStart, this.state.articleEnd)
+            setPage(page - 1)
+            setArticleStart(articleStart - 9)
+            setArticleEnd(articleEnd - 9)
+            renderNews(articleStart, articleEnd)
         }
 
     }
-    renderNews(start, end) {
-        return this.state.articles.slice(start, end).map((e) => {
+
+    const renderNews = (start, end) => {
+        return articles.slice(start, end).map((e) => {
             if (e.title === "" || e.abstract === "" || e.section === "admin") {
                 return "";
             }
@@ -67,33 +60,42 @@ export default class TopStories extends Component {
         });
     }
 
-    async componentDidMount() {
-        let url = `https://api.nytimes.com/svc/topstories/v2/${this.props.section}.json?api-key=${this.props.apiKey}`;
-        let data = await fetch(url);
-        let parsedData = await data.json()
-        this.setState({ articles: parsedData.results, section: parsedData.section })
-        document.title = `News Wallah - ${this.props.section === "home" ? '' : this.state.section} Headlines`
-    }
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                let url = `https://api.nytimes.com/svc/topstories/v2/${props.section}.json?api-key=${props.apiKey}`;
+                let data = await fetch(url);
+                let parsedData = await data.json()
+                setArticles(parsedData.results)
+                setSection(parsedData.section)
+                document.title = `News Wallah - ${props.section === "home" ? '' : section} Headlines`
+            }
+            catch (error) {
+                console.log(error)
+            }
+        }
+        fetchData();
+    }, [props.apiKey, props.section, section]);
 
-    render() {
-        return (
-            <>
-                {document.title = `News Wallah - ${this.props.section === "home" ? '' : this.state.section} Headlines`}
-                {this.state.articles.length === 0 ? <Spinner /> :
-                    <div className="container my-3" style={{ padding: "4rem" }}>
-                        <h2 id="heading" className="text-center">News Wallah - {this.props.section === "home" ? '' : this.state.section} Headlines</h2>
-                        <div className="row my-3">
-                            {
-                                this.renderNews(this.state.articleStart, this.state.articleEnd)
-                            }
-                        </div>
-                        <div className="container d-flex justify-content-between">
-                            <button type="button" className="btn btn-outline-danger" onClick={this.handlePrevClick} disabled={this.state.page <= 1}> &larr; Previous</button>
-                            <button type="button" className="btn btn-outline-danger" disabled={this.state.page === (Math.ceil(this.state.articles.length / 9))} onClick={this.handleNextClick}>Next &rarr;</button>
-                        </div>
-                    </div>}
-            </>
-        )
-    }
+
+    return (
+        <>
+            {document.title = `News Wallah - ${props.section === "home" ? '' : section} Headlines`}
+            {articles.length === 0 ? <Spinner /> :
+                <div className="container my-3" style={{ padding: "4rem" }}>
+                    <h2 id="heading" className="text-center">News Wallah - {props.section === "home" ? '' : section} Headlines</h2>
+                    <div className="row my-3">
+                        {
+                            renderNews(articleStart, articleEnd)
+                        }
+                    </div>
+                    <div className="container d-flex justify-content-between">
+                        <button type="button" className="btn btn-outline-danger" onClick={handlePrevClick} disabled={page <= 1}> &larr; Previous</button>
+                        <button type="button" className="btn btn-outline-danger" disabled={page === (Math.ceil(articles.length / 9))} onClick={handleNextClick}>Next &rarr;</button>
+                    </div>
+                </div>}
+        </>
+    )
 }
 
+export default TopStories

@@ -1,14 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class About extends Component {
-    constructor() {
-        super()
-        document.title = "News Wallah - About Us"
-    }
-
-    render() {
-        return (
-            <>
+function About(){
+    return (
+        <>
+        {document.title = "News Wallah - About Us"}
                 <div className="container" style={{ padding: "5rem" }}>
                     <div className="row">
                         <div className="col-4 text-center">
@@ -30,5 +25,6 @@ export default class About extends Component {
                 </div>
             </>
         )
-    }
 }
+
+export default About

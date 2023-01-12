@@ -1,14 +1,9 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 
-export default class Navbar extends Component {
-  constructor() {
-    super();
-    this.state = {
-      categories: ["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Insider", "Magazine", "Movies", "Nyregion", "Obituaries", "Opinion", "Politics", "RealEstate", "Science", "Sports", "Sundayreview", "Technology", "Theater", "T-magazine", "Travel", "Upshot", "Us", "World"]
-    }
-  }
+function Navbar() {
 
-  render() {
+  const [categories] = useState(["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Insider", "Magazine", "Movies", "Nyregion", "Obituaries", "Opinion", "Politics", "RealEstate", "Science", "Sports", "Sundayreview", "Technology", "Theater", "T-magazine", "Travel", "Upshot", "Us", "World"])
+
     return (
       <>
         <nav className="navbar navbar-dark bg-dark fixed-top">
@@ -36,7 +31,7 @@ export default class Navbar extends Component {
                     </a>
                     <ul className="dropdown-menu dropdown-menu-dark">
                       {
-                        this.state.categories.map((e) => {
+                        categories.map((e) => {
                           if (e === "RealEstate") {
                             return <li key={e}><a className="dropdown-item" href={`/categories/${e.toLowerCase()}`}>Real Estate</a></li>
                           }
@@ -59,5 +54,6 @@ export default class Navbar extends Component {
         </nav>
       </>
     )
-  }
 }
+
+export default Navbar
