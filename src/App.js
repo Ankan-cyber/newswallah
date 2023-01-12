@@ -4,7 +4,7 @@ import About from './components/About'
 import Navbar from './components/Navbar'
 import TopStories from './components/TopStories'
 import NotFound from './components/NotFound'
-
+// Search Feature is in pending after redux 
 export class App extends Component {
   apiKey = "G0hi9JktPaMmV6i0GVcnNZXjoA4RXkQ9";
   constructor() {

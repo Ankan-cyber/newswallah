@@ -6,15 +6,8 @@ export default class Navbar extends Component {
     this.state = {
       categories: ["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Insider", "Magazine", "Movies", "Nyregion", "Obituaries", "Opinion", "Politics", "RealEstate", "Science", "Sports", "Sundayreview", "Technology", "Theater", "T-magazine", "Travel", "Upshot", "Us", "World"]
     }
-    this.inputElement = React.createRef();
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    // let inputValue = this.inputElement.current.value;
-    // useHistory().push(`/search?q=${inputValue}`);
-    // send inputValue to /search with query parameter ?q=inputValue
-  }
   render() {
     return (
       <>
@@ -56,10 +49,10 @@ export default class Navbar extends Component {
                     </ul>
                   </li>
                 </ul>
-                <form className="d-flex mt-3" role="search" action="/search" method="get" onSubmit={this.handleSubmit}>
-                  <input ref={this.inputElement} className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                {/* <form className="d-flex mt-3" role="search">
+                  <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
                   <button className="btn btn-success" type="submit">Search</button>
-                </form>
+                </form> */}
               </div>
             </div>
           </div>
