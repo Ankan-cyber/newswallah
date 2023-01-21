@@ -7,7 +7,7 @@ import NotFound from './components/NotFound'
 // Search Feature is in pending after redux 
 
 function App() {
-  const apiKey = "G0hi9JktPaMmV6i0GVcnNZXjoA4RXkQ9";
+  const apiKey = "Put Your Own";
   const [categories] = useState(["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Insider", "Magazine", "Movies", "Nyregion", "Obituaries", "Opinion", "Politics", "RealEstate", "Science", "Sports", "Sundayreview", "Technology", "Theater", "T-magazine", "Travel", "Upshot", "Us", "World"])
 
   return (
