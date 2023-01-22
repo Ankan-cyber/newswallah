@@ -11,20 +11,24 @@ function TopStories(props) {
 
     const handleNextClick = () => {
         if (page < Math.ceil(articles.length / 9)) {
-            window.scrollTo(0, 0)
             setPage(page + 1)
             setArticleStart(articleEnd)
             setArticleEnd(articleEnd + 9)
             renderNews(articleStart, articleEnd)
+            setTimeout(() => {
+                window.scrollTo(0, 0)
+            }, 100);
         }
     }
     const handlePrevClick = () => {
         if (page <= Math.ceil(articles.length / 9)) {
-            window.scrollTo(0, 0)
             setPage(page - 1)
             setArticleStart(articleStart - 9)
             setArticleEnd(articleEnd - 9)
             renderNews(articleStart, articleEnd)
+            setTimeout(() => {
+                window.scrollTo(0, 0)
+            }, 100);
         }
 
     }
