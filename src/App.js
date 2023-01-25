@@ -4,6 +4,7 @@ import About from './components/About'
 import Navbar from './components/Navbar'
 import TopStories from './components/TopStories'
 import NotFound from './components/NotFound'
+import Footer from './components/Footer'
 // Search Feature is in pending after redux 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             })
           }
         </Routes>
+        <Footer/>
       </Router>
     </>
   )

@@ -65,6 +65,7 @@ function TopStories(props) {
     }
 
     useEffect(() => {
+        document.title = `${props.section === "home" ? '' : section} Headlines - News Wallah`
         async function fetchData() {
             try {
                 let url = `https://api.nytimes.com/svc/topstories/v2/${props.section}.json?api-key=${props.apiKey}`;
@@ -84,7 +85,6 @@ function TopStories(props) {
 
     return (
         <>
-            {document.title = `News Wallah - ${props.section === "home" ? '' : section} Headlines`}
             {articles.length === 0 ? <Spinner /> :
                 <div className="container my-3" style={{ padding: "4rem" }}>
                     <h2 id="heading" className="text-center">News Wallah - {props.section === "home" ? '' : section} Headlines</h2>
