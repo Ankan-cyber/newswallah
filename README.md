@@ -15,7 +15,7 @@ cd newswallah
 npm install
 ```
 
-##Usage
+## Usage
 Add your New York Times API key to the App.js file in the api variable
 
 Start the development server:
