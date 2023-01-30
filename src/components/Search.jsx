@@ -11,6 +11,7 @@ const Search = () => {
         setarticles(data.articles)
         setquery(data.query)
     });
+    document.title = `${query} - News Wallah`
 
     const renderNews = () => {
         return articles.map((e) => {
