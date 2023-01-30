@@ -6,16 +6,14 @@ import InfiniteScroll from 'react-infinite-scroller';
 function TopStories(props) {
     const [articles, setArticles] = useState([])
     const [page, setPage] = useState(1)
-    const [articleEnd, setArticleEnd] = useState(9)
+    const [articleEnd, setArticleEnd] = useState(6)
     const [section, setSection] = useState("Home")
 
     const handleNextClick = () => {
-        if (page < Math.ceil(articles.length / 9)) {
-            setTimeout(() => {
-                setPage(page + 1)
-                setArticleEnd(articleEnd + 9)
-                renderNews(0, articleEnd)
-            }, 500);
+        if (page < Math.ceil(articles.length / 6)) {
+            setPage(page + 1)
+            setArticleEnd(articleEnd + 6)
+            renderNews(0, articleEnd)
         }
     }
 
@@ -78,10 +76,11 @@ function TopStories(props) {
                         <InfiniteScroll
                             pageStart={0}
                             loadMore={handleNextClick}
-                            hasMore={Math.ceil(articles.length / 9) === page ? false : true}
-                            loader={<Spinner />}
+                            hasMore={Math.ceil(articles.length / 6) === page ? false : true}
+                            loader={<Spinner key={Math.floor(Math.random() * 51)} />}
+                            threshold={-10}
                         >
-                            <div className="row my-3">
+                            <div className="row my-3" key={Math.random() + 1}>
                                 {renderNews(0, articleEnd)}
                             </div>
                         </InfiniteScroll>
