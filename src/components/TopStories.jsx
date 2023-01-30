@@ -1,36 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import NewsCard from './NewsCard'
 import Spinner from './Spinner'
+import InfiniteScroll from 'react-infinite-scroller';
 
 function TopStories(props) {
     const [articles, setArticles] = useState([])
     const [page, setPage] = useState(1)
-    const [articleStart, setArticleStart] = useState(0)
     const [articleEnd, setArticleEnd] = useState(9)
     const [section, setSection] = useState("Home")
 
     const handleNextClick = () => {
         if (page < Math.ceil(articles.length / 9)) {
-            setPage(page + 1)
-            setArticleStart(articleEnd)
-            setArticleEnd(articleEnd + 9)
-            renderNews(articleStart, articleEnd)
             setTimeout(() => {
-                window.scrollTo(0, 0)
-            }, 100);
+                setPage(page + 1)
+                setArticleEnd(articleEnd + 9)
+                renderNews(0, articleEnd)
+            }, 500);
         }
-    }
-    const handlePrevClick = () => {
-        if (page <= Math.ceil(articles.length / 9)) {
-            setPage(page - 1)
-            setArticleStart(articleStart - 9)
-            setArticleEnd(articleEnd - 9)
-            renderNews(articleStart, articleEnd)
-            setTimeout(() => {
-                window.scrollTo(0, 0)
-            }, 100);
-        }
-
     }
 
     const renderNews = (start, end) => {
@@ -88,15 +74,18 @@ function TopStories(props) {
             {articles.length === 0 ? <Spinner /> :
                 <div className="container my-3" style={{ padding: "4rem" }}>
                     <h2 id="heading" className="text-center">News Wallah - {props.section === "home" ? '' : section} Headlines</h2>
-                    <div className="row my-3">
-                        {
-                            renderNews(articleStart, articleEnd)
-                        }
-                    </div>
-                    <div className="container d-flex justify-content-between">
-                        <button type="button" className="btn btn-outline-danger" onClick={handlePrevClick} disabled={page <= 1}> &larr; Previous</button>
-                        <button type="button" className="btn btn-outline-danger" disabled={page === (Math.ceil(articles.length / 9))} onClick={handleNextClick}>Next &rarr;</button>
-                    </div>
+                    {
+                        <InfiniteScroll
+                            pageStart={0}
+                            loadMore={handleNextClick}
+                            hasMore={Math.ceil(articles.length / 9) === page ? false : true}
+                            loader={<Spinner />}
+                        >
+                            <div className="row my-3">
+                                {renderNews(0, articleEnd)}
+                            </div>
+                        </InfiniteScroll>
+                    }
                 </div>}
         </>
     )
