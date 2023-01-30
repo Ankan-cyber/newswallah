@@ -1,8 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom';
+import { searchArticle } from '../state/action-creator/index'
 
 function Navbar() {
 
+  const close = useRef();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [categories] = useState(["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Insider", "Magazine", "Movies", "Nyregion", "Obituaries", "Opinion", "Politics", "RealEstate", "Science", "Sports", "Sundayreview", "Technology", "Theater", "T-magazine", "Travel", "Upshot", "Us", "World"])
+
+  const [query, setquery] = useState("")
+
+  const handleChange = (e) => {
+    setquery(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(searchArticle(query))
+    close.current.click()
+    navigate('/search')
+  }
 
   return (
     <>
@@ -15,7 +34,7 @@ function Navbar() {
           <div className="offcanvas offcanvas-end text-bg-dark" tabIndex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
             <div className="offcanvas-header">
               <h5 className="offcanvas-title" id="offcanvasDarkNavbarLabel">News Wallah</h5>
-              <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              <button type="button" className="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" ref={close}></button>
             </div>
             <div className="offcanvas-body">
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -44,8 +63,8 @@ function Navbar() {
                   </ul>
                 </li>
               </ul>
-              <form className="d-flex mt-3" role="search">
-                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+              <form className="d-flex mt-3" role="search" onSubmit={handleSubmit}>
+                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" name='search' onChange={handleChange} />
                 <button className="btn btn-success" type="submit">Search</button>
               </form>
             </div>
