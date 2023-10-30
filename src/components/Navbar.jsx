@@ -1,14 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
-import { searchArticle } from '../state/action-creator/index'
+import {categories} from '../constants/index'
 
 function Navbar() {
 
   const close = useRef();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [categories] = useState(["Arts", "Automobiles", "Books", "Business", "Fashion", "Food", "Health", "Insider", "Magazine", "Movies", "Nyregion", "Obituaries", "Opinion", "Politics", "RealEstate", "Science", "Sports", "Sundayreview", "Technology", "Theater", "T-magazine", "Travel", "Upshot", "Us", "World"])
 
   const [query, setquery] = useState("")
 
@@ -18,9 +15,8 @@ function Navbar() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(searchArticle(query))
+    navigate(`/search?query=${query}`)
     close.current.click()
-    navigate('/search')
   }
 
   return (

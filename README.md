@@ -31,10 +31,10 @@ npm run build
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
-This repository is not under any license, if you want to use or redistribute it please contact the author or the owner of the repository to get their permission.
+This repository is not under MIT license.
 
 ## Acknowledgments
 - [React](https://reactjs.org/)
 - [New York Times API](https://developer.nytimes.com/)
-- [Material-UI](https://material-ui.com/)
+- [Bootstrap](https://getbootstrap.com/)
 

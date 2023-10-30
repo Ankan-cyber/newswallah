@@ -41,7 +41,7 @@ function TopStories(props) {
                 });
                 return (
                     <div className='col-md-4' style={{ padding: '10px' }} key={e.uri}>
-                        <NewsCard title={e.title} abstract={e.abstract} newsUrl={e.short_url} imgUrl={imgUrl} author={e.byline} date={formattedDate} />
+                        <NewsCard title={e.title} abstract={e.abstract} newsUrl={e.url} imgUrl={imgUrl} author={e.byline} date={formattedDate} />
                     </div>
                 );
             }

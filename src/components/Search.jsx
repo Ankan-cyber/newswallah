@@ -1,17 +1,30 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react'
 import Spinner from './Spinner';
 import NewsCard from './NewsCard';
+import { useNavigate } from 'react-router-dom';
 
-const Search = () => {
+const Search = (props) => {
+    const queryParameters = new URLSearchParams(window.location.search)
     const [articles, setarticles] = useState([])
-    const [query, setquery] = useState("")
-
-    useSelector(state => state.search).then(data => {
-        setarticles(data.articles)
-        setquery(data.query)
-    });
+    const [query] = useState(queryParameters.get("query"))
+    const navigate = useNavigate()
     document.title = `${query} - News Wallah`
+
+    useEffect(() => {
+        if (query == null || query.length === 0) {
+            navigate('/')
+        }
+        else {
+            (async () => {
+                let url = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${query}&api-key=${props.apiKey}`;
+                let data = await fetch(url);
+                let parsedData = await data.json();
+                setarticles(parsedData.response.docs);
+            })();
+        }
+        //eslint-disable-next-line
+    }, [query])
+
 
     const renderNews = () => {
         return articles.map((e) => {
